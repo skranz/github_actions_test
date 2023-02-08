@@ -16,6 +16,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
+      env: 
+        MYSECRET: ${{ secrets.mysecret }}
+        MYVAR: ${{ secrets.MYSECRET }}
       run: docker build -t skranz/gha_test .
     - name: Docker Run Action
       env: 
