@@ -17,14 +17,12 @@ jobs:
     - uses: actions/checkout@v3
     - name: Build the Docker image
       env: 
-        MYSECRET: ${{ secrets.mysecret }}
-        MYVAR: ${{ secrets.MYSECRET }}
+        MYSECRET: ${{ secrets.MYSECRET }}
       run: docker build -t skranz/gha_test .
     - name: Docker Run Action
       env: 
-        MYSECRET: ${{ secrets.mysecret }}
-        MYVAR: ${{ secrets.MYSECRET }}
-      run: docker run --rm --name gha_test -v $GITHUB_WORKSPACE/output:/root/output:rw -v $GITHUB_WORKSPACE/scripts/:/root/scripts/:rw skranz/gha_test R -e 'source("~/scripts/run_test.R")'
+        MYSECRET: ${{ secrets.MYSECRET }}
+      run: docker run --rm --name gha_test --env MYSECRET=${{ secrets.MYSECRET }} -v $GITHUB_WORKSPACE/output:/root/output:rw -v $GITHUB_WORKSPACE/scripts/:/root/scripts/:rw skranz/gha_test R -e 'source("~/scripts/run_test.R")'
     - uses: actions/upload-artifact@v3
       with:
         name: repbox_results
