@@ -18,7 +18,7 @@ jobs:
     - name: Build the Docker image
       env: 
         MYSECRET: ${{ secrets.MYSECRET }}
-      run: docker build -t skranz/gha_test .
+      run: docker build --build-arg MYSECRET=${{ secrets.MYSECRET }} -t skranz/gha_test .
     - name: Docker Run Action
       env: 
         MYSECRET: ${{ secrets.MYSECRET }}
