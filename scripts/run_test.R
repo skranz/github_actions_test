@@ -2,8 +2,10 @@ cat("\nHello World!\n")
 
 writeLines("I am a text","~/output/test.txt")
 
+txt = readLines("~/mytext.txt")
+cat("\n", txt,"\n")
+
+
 # Read and show Github secret
-secret.file = "/run/secrets/MYSECRET"
-secret.file = "/root/MYSECRET"
-secret = readLines(secret.file)
+secret = readLines("~/MYSECRET.txt")
 cat("\n", secret,"\n")
