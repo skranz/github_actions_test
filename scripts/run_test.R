@@ -7,9 +7,10 @@ cat("\n", txt,"\n")
 
 cat('\n\nSys.getenv("MYSECRET") = ', Sys.getenv("MYSECRET"))
 
-cat('\n\nSys.getenv("myvar") = ', Sys.getenv("myvar"))
-
+cat("\nSys.getenv(#MYSECRET#) = 'SECRET' = ", Sys.getenv("MYSECRET") == "SECRET")
 
 # Read and show Github secret
 secret = readLines("~/MYSECRET.txt")
 cat("\n\nMYSECRET.txt: ", secret,"\n")
+
+cat("\nIs secret 'SECRET' = ", secret == "SECRET")
