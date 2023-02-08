@@ -6,11 +6,11 @@ txt = readLines("~/mytext.txt")
 cat("\n", txt,"\n")
 
 myvar <- Sys.getenv("MYVAR")
-cat("\nSys.getenv: ", myvar)
+cat("\n\nSys.getenv: ", myvar)
 
 secret = readLines("~/MYVAR.txt")
-cat("\nMYVAR.txt: ", secret,"\n")
+cat("\n\nMYVAR.txt: ", secret,"\n")
 
 # Read and show Github secret
 secret = readLines("~/MYSECRET.txt")
-cat("\n MYSECRET.txt: ", secret,"\n")
+cat("\n\nMYSECRET.txt: ", secret,"\n")
