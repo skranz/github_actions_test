@@ -5,8 +5,9 @@ writeLines("I am a text","~/output/test.txt")
 txt = readLines("~/mytext.txt")
 cat("\n", txt,"\n")
 
-myvar <- Sys.getenv("MYSECRET")
-cat("\n\nSys.getenv: ", myvar)
+cat('\n\nSys.getenv("MYSECRET") = ', Sys.getenv("MYSECRET"))
+
+cat('\n\nSys.getenv("myvar") = ', Sys.getenv("myvar"))
 
 
 # Read and show Github secret

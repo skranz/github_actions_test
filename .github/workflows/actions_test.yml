@@ -22,7 +22,7 @@ jobs:
     - name: Docker Run Action
       env: 
         MYSECRET: ${{ secrets.MYSECRET }}
-      run: docker run --rm --name gha_test --env MYSECRET=${{ secrets.MYSECRET }} -v $GITHUB_WORKSPACE/output:/root/output:rw -v $GITHUB_WORKSPACE/scripts/:/root/scripts/:rw skranz/gha_test R -e 'source("~/scripts/run_test.R")'
+      run: docker run --rm --name gha_test --env MYSECRET=${{ secrets.MYSECRET }} --env myvar=$MYSECRET -v $GITHUB_WORKSPACE/output:/root/output:rw -v $GITHUB_WORKSPACE/scripts/:/root/scripts/:rw skranz/gha_test R -e 'source("~/scripts/run_test.R")'
     - uses: actions/upload-artifact@v3
       with:
         name: repbox_results
