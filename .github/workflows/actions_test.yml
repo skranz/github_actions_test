@@ -1,8 +1,10 @@
 name: Run Repbox
 
 on:
-  push:
-    branches: [ "main" ]
+  on:
+    workflow_dispatch:
+#  push:
+#    branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
 
@@ -16,13 +18,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      env: 
-        MYSECRET: ${{ secrets.MYSECRET }}
-      run: docker build --build-arg MYSECRET=${{ secrets.MYSECRET }} -t skranz/gha_test .
+      run: docker build -t skranz/gha_test .
     - name: Docker Run Action
-      env: 
-        MYSECRET: ${{ secrets.MYSECRET }}
-      run: docker run --rm --name gha_test --env MYSECRET=${{ secrets.MYSECRET }} --env myvar=$MYSECRET -v $GITHUB_WORKSPACE/output:/root/output:rw -v $GITHUB_WORKSPACE/scripts/:/root/scripts/:rw skranz/gha_test R -e 'source("~/scripts/run_test.R")'
+      run: docker run --rm --name gha_test --env MYSECRET=${{ secrets.MYSECRET }} --env MYSECRET2=${{ secrets.MYSECRET2 }} -v $GITHUB_WORKSPACE/output:/root/output:rw -v $GITHUB_WORKSPACE/scripts/:/root/scripts/:rw skranz/gha_test R -e 'source("~/scripts/run_test.R")'
     - uses: actions/upload-artifact@v3
       with:
         name: repbox_results

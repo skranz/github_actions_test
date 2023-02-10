@@ -1,16 +1,18 @@
 cat("\nHello World!\n")
 
-writeLines("I am a text","~/output/test.txt")
-
-txt = readLines("~/mytext.txt")
-cat("\n", txt,"\n")
-
 cat('\n\nSys.getenv("MYSECRET") = ', Sys.getenv("MYSECRET"))
 
-cat("\nSys.getenv(#MYSECRET#) = 'SECRET' = ", Sys.getenv("MYSECRET") == "SECRET")
+cat('\n\nSys.getenv("MYSECRET2") = ', Sys.getenv("MYSECRET2"))
 
-# Read and show Github secret
-secret = readLines("~/MYSECRET.txt")
-cat("\n\nMYSECRET.txt: ", secret,"\n")
+txt = Sys.getenv("MYSECRET")
+if (!is.null(txt)) {
+  cat("\nWrite MYSECRET")
+  writeLines(txt, "/root/output/mysecret.txt")
+}
 
-cat("\nIs secret 'SECRET' = ", secret == "SECRET")
+txt = Sys.getenv("MYSECRET2")
+if (!is.null(txt)) {
+  cat("\nWrite MYSECRET2")
+  writeLines(txt, "/root/output/mysecret2.txt")
+}
+
